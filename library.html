@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Website</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #6a05f7;
+            color: #fff;
+            padding: 1em;
+        }
+
+        h1 {
+            text-decoration: underline;
+            margin-bottom: 0.5em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 2em auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #0489fd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0369cb;
+        }
+
+        button.remove-btn {
+            background-color: #db0909;
+        }
+
+        button.remove-btn:hover {
+            background-color: #b10808;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <h1>Svce Library</h1>
+
+    <ul id="bookList">
+        
+    </ul>
+
+    <h2>Add a New Book</h2>
+    <form id="addBookForm">
+        <label for="bookTitle">Title:</label>
+        <input type="text" id="bookTitle" required>
+
+        <label for="bookAuthor">Author:</label>
+        <input type="text" id="bookAuthor" required>
+
+        <button type="button" onclick="addBook()">Add Book</button>
+    </form>
+
+    <script>
+        function removeBook(bookElement) {
+            var bookList = document.getElementById("bookList");
+            bookList.removeChild(bookElement);
+        }
+
+        function addBook() {
+            var title = document.getElementById("bookTitle").value;
+            var author = document.getElementById("bookAuthor").value;
+
+            if (title && author) {
+                var newBook = document.createElement("li");
+                newBook.innerHTML = `<strong>${title}</strong> written by ${author} <button style="background-color: #db0909;"onclick="removeBook(this.parentNode)">Remove</button>`;
+
+                document.getElementById("bookList").appendChild(newBook);
+
+                // Clear input fields
+                document.getElementById("bookTitle").value = "";
+                document.getElementById("bookAuthor").value = "";
+            } else {
+                alert("Please fill in both title and author fields.");
+            }
+        }
+    </script>
+
+</body>
+</html>
